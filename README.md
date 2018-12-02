@@ -1,4 +1,4 @@
-# protobuftest
+# 各大序列化框架性能测试
 1. size=10
 ```
 protobuf序列化字节长度:167
@@ -18,6 +18,7 @@ hessian2反序列化结果:name=张三,id=HO123,age=300,role1=R1,role2=R2
 hessian2序列化耗时:63
 ```
 可以看出在数据量很小的情况，几个框架的性能差别不大，hessian2最好，xml甚至比protobuf还要高一些。但是有一个地方需要注意，就是序列化后的字节长度，json是xml的大概1/2多一点，而protobuf只有xml的1/4，而hessian甚至比xml还要长。这在存储敏感或者带宽敏感的场景下是至关重要的。之后的所有测试存储所占空间的比例基本都是一样。
+
 2. size=1000
 ```
 protobuf序列化字节长度:15919
@@ -37,6 +38,7 @@ hessian2反序列化结果:name=张三,id=HO123,age=300,role1=R1,role2=R2
 hessian2序列化耗时:114
 ```
 当数据量来到1000这个量级，仍然是hessian一马当先，可以看到protobuf已经反超xml了，这时候json的性能也已经超过xml，xml的劣势开始渐渐显现。
+
 3. size=100000
 ```
 protobuf序列化字节长度:1788921
@@ -54,9 +56,9 @@ json序列化耗时:726
 hessian2序列化字节长度:6288994
 hessian2反序列化结果:name=张三,id=HO123,age=300,role1=R1,role2=R2
 hessian2序列化耗时:785
-
 ```
 来到10万这个量级，protobuf反超！而且优势非常明显，几乎是xml性能的3倍，hessian的2倍，序列化后的字节大小为1.7M左右，xml的1/4
+
 4. size=1000000
 ```
 protobuf序列化字节长度:18888922
